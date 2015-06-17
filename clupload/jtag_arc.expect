@@ -5,20 +5,17 @@ set timeout 30
 spawn telnet localhost 4444
 
 expect ">" 
-send "reset\n"
-expect ">"
-send "reset\n"
-expect ">"
-#send "mww 0xb0800008 0x9\n"
+#send "init\n"
 #expect ">"
-#expect "gdb_breakpoint_override hard\n"
-#expect ">"
+send "init;reset;targets 0;mww 0xb0800008 0x9;gdb_breakpoint_override hard\n"
+expect ">"
 send "load_image "
 send $name
-send " 0x40040000 bin\n"
+send " 0x40034000 bin;targets 1;resume;ftdi_set_signal nTRST 0;shutdown\n"
 expect ">"
-send "resume\n"
-expect ">"
+#sleep 10
+#send "targets 1;resume;ftdi_set_signal nTRST 0;shutdown\n"
+#expect ">"
 send "exit\n"
 
 
