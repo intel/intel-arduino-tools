@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+#
+set name [lindex $argv 0]
+set timeout 30
+spawn telnet localhost 4444
+
+expect ">" 
+send "reset\n"
+expect ">"
+send "reset\n"
+expect ">"
+#send "mww 0xb0800008 0x9\n"
+#expect ">"
+#expect "gdb_breakpoint_override hard\n"
+#expect ">"
+send "load_image "
+send $name
+send " 0x40000000 bin\n"
+expect ">"
+send "resume\n"
+expect ">"
+send "exit\n"
+
+
