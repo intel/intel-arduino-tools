@@ -25,6 +25,6 @@ host_file_name=$2
 bin_file_name=${host_file_name/elf/bin}
 echo "BIN FILE" $bin_file_name
 
-~/.arduino15/packages/Intel/tools/sketchUploader/1.6.2+1.0/clupload/jtag_arc.expect $bin_file_name
+~/.arduino15/packages/Intel-Test/tools/sketchUploader/1.6.2+1.0/clupload/jtag_arc.expect $bin_file_name
 
 
