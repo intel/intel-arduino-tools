@@ -15,7 +15,7 @@ expect ">"
 #expect ">"
 send "load_image "
 send $name
-send " 0x40000000 bin\n"
+send " 0x40040000 bin\n"
 expect ">"
 send "resume\n"
 expect ">"
