@@ -1,5 +1,4 @@
 #!/bin/sh
-
 echo "starting download script"
 echo "Args to shell:" $*
 #
@@ -17,15 +16,18 @@ host_file_name=$2
 bin_file_name=${host_file_name/elf/bin}
 echo "BIN FILE" $bin_file_name
 
+#DFU=DYNLD_LIBRARY_PATH=$fixed_path $fixed_path/dfu-util
+DYLD_LIBRARY_PATH=$fixed_path
 DFU=$fixed_path/dfu-util
 
 echo "wating for device... "
-f=`$DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
+f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
 while [ "x$f" = "x" ]
 do
     sleep 1
-    f=`$DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
+	echo $DFU
+    f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
 done
 
 echo "Using dfu-util to send " $bin_file_name
-$DFU -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+DYLD_LIBRARY_PATH=$fixed_path $DFU -d8087:0a99 -D $bin_file_name -v --alt 7 -R
