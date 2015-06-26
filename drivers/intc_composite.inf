@@ -1,0 +1,47 @@
+;*********************************************************************************************
+; Windows USB Composite Setup File for Intel EDU
+;
+; Copyright (c) 2014 Intel Corporation
+;
+; For use only on Windows operating systems.
+;*********************************************************************************************
+[Version]
+Signature 			= "$WINDOWS NT$"
+Class 				= USB
+ClassGUID 			= {4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider 			= %ProviderName%
+DriverVer			= 08/13/2014,1.1.0.0
+;CatalogFile.NTx86  	= intc_usbcompx86.cat
+;CatalogFile.NTAMD64 = intc_usbcompamd64.cat
+
+[Manufacturer]
+%ProviderName% 	=	Generic,NTx86,NTamd64
+
+[Generic.NTx86]
+; Intel EDU
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A9F ; ACM+ACM
+
+[Generic.NTamd64]
+; Intel EDU
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0A9F ; ACM+ACM
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+; Common Class Generic Parent for root ID
+[Composite.Device]
+Include=usb.inf
+Needs=Composite.Dev.NT
+
+[Composite.Device.Services]
+Include=usb.inf
+Needs=Composite.Dev.NT.Services
+
+[SourceDisksNames]
+1=%SourceDisk%,,1
+
+[Strings]
+ProviderName 		= "Intel Corporation"
+ServiceDisplayName	= "Intel EDU USB Composite Device Driver"
+USBCompositeDevice	= "Intel EDU USB Composite Device"
+SourceDisk 			= "Intel EDU USB Composite Device Install Disk"
