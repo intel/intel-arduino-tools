@@ -10,6 +10,9 @@ echo "Args to shell:" $*
 #path may contain \ need to change all to /
 path_to_exe=$1
 fixed_path=${path_to_exe//\\/\/}
+
+LD_LIBRARY_PATH=$fixed_path/../lib/
+
 #
 tty_port_id=$3
 echo "Serial Port PORT" $com_port_id 
@@ -18,6 +21,7 @@ echo "Serial Port PORT" $com_port_id
 host_file_name=$2
 bin_file_name=${host_file_name/elf/bin}
 echo "BIN FILE" $bin_file_name
+
 
 DFU=$fixed_path/dfu-util
 echo "wating for device... "
