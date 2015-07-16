@@ -63,7 +63,7 @@ Signature = "$Windows NT$"
 Class = %ClassName%
 ClassGuid = %DeviceClassGUID%
 Provider = %ProviderName%
-CatalogFile = libusb_device.cat
+CatalogFile = intc_libusb.cat
 
 ; =================== Class section ===================
 

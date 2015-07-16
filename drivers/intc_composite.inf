@@ -11,8 +11,7 @@ Class 				= USB
 ClassGUID 			= {4D36E978-E325-11CE-BFC1-08002BE10318}
 Provider 			= %ProviderName%
 DriverVer			= 08/13/2014,1.1.0.0
-;CatalogFile.NTx86  	= intc_usbcompx86.cat
-;CatalogFile.NTAMD64 = intc_usbcompamd64.cat
+CatalogFile = intc_composite.cat
 
 [Manufacturer]
 %ProviderName% 	=	Generic,NTx86,NTamd64
