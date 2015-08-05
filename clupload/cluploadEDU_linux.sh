@@ -24,13 +24,19 @@ echo "BIN FILE" $bin_file_name
 
 
 DFU=$fixed_path/dfu-util
-echo "wating for device... "
-f=`$DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
-while [ "x$f" = "x" ]
+echo "wating for IntelEDU device... "
+COUNTER=0
+f=`$DFU -l -d 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
+while [ "x$f" = "x" ] && [ $COUNTER -lt 10 ]
 do
+    let COUNTER=COUNTER+1
     sleep 1
-    f=`$DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
+    f=`$DFU -l -d 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
 done
 
-echo "Using dfu-util to send " $bin_file_name
-$DFU -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+if [ "x$f" != "x" ] ; then
+	echo "Using dfu-util to send " $bin_file_name
+	$DFU -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+else
+	echo "ERROR: Timed out waiting for Intel EDU."
+fi
