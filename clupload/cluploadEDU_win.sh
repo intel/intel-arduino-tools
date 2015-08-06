@@ -31,16 +31,21 @@ bin_file_name=${host_file_name/elf/bin}
 echo "BIN FILE" $bin_file_name
 
 echo "Waiting for device... "
-
+COUNTER=0
 $dfu -l -d 8087:0a99 >$tmp_dfu_output
 f=`findstr sensor_core $tmp_dfu_output`
-while [ "x$f" = "x" ]
+while [ "x$f" = "x" ] && [ $COUNTER -lt 10 ]
 do
+    let COUNTER=COUNTER+1
     $sleep 1
     $dfu -l -d 8087:0a99 >$tmp_dfu_output
     f=`findstr sensor_core $tmp_dfu_output`
 done
 
-echo "Using dfu-util to send " $bin_file_name
-echo $dfu -d8087:0a99 -D $bin_file_name -v --alt 7 -R
-$dfu -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+if [ "x$f" != "x" ] ; then
+	echo "Using dfu-util to send " $bin_file_name
+	echo $dfu -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+	$dfu -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+else
+	echo "ERROR: Timed out waiting for Intel EDU."
+fi
