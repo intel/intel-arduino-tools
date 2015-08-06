@@ -21,13 +21,19 @@ DYLD_LIBRARY_PATH=$fixed_path
 DFU=$fixed_path/dfu-util
 
 echo "wating for device... "
-f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
-while [ "x$f" = "x" ]
+COUNTER=0
+f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l -d8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
+while [ "x$f" = "x" ] && [ $COUNTER -lt 10 ]
 do
+    let COUNTER=COUNTER+1
     sleep 1
 	echo $DFU
-    f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l | grep 8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
+    f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l -d8087:0a99 | grep sensor_core | cut -f 1 -d ' '`
 done
 
-echo "Using dfu-util to send " $bin_file_name
-DYLD_LIBRARY_PATH=$fixed_path $DFU -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+if [ "x$f" != "x" ] ; then
+    echo "Using dfu-util to send " $bin_file_name
+    DYLD_LIBRARY_PATH=$fixed_path $DFU -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+else
+     echo "ERROR: Timed out waiting for Intel EDU."
+fi
