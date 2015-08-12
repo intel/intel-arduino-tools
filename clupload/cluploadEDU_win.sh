@@ -10,6 +10,7 @@ echo "Args to shell:" $*
 #path may contain \ need to change all to /
 dfu=${1}\\dfu-util.exe
 dfu=${dfu//\\/\/}
+dfu_cmd="$dfu -d8087:0ABA"
 sleep=${1}\\sleep.exe
 sleep=${sleep//\\/\/}
 path_to_exe=$1
@@ -32,20 +33,20 @@ echo "BIN FILE" $bin_file_name
 
 echo "Waiting for device... "
 COUNTER=0
-$dfu -l -d 8087:0a99 >$tmp_dfu_output
+$dfu_cmd -l  >$tmp_dfu_output
 f=`findstr sensor_core $tmp_dfu_output`
 while [ "x$f" = "x" ] && [ $COUNTER -lt 10 ]
 do
     let COUNTER=COUNTER+1
     $sleep 1
-    $dfu -l -d 8087:0a99 >$tmp_dfu_output
+    $dfu_cmd -l >$tmp_dfu_output
     f=`findstr sensor_core $tmp_dfu_output`
 done
 
 if [ "x$f" != "x" ] ; then
 	echo "Using dfu-util to send " $bin_file_name
-	echo $dfu -d8087:0a99 -D $bin_file_name -v --alt 7 -R
-	$dfu -d8087:0a99 -D $bin_file_name -v --alt 7 -R
+	echo $dfu_cmd -D $bin_file_name -v --alt 7 -R
+	$dfu_cmd  -D $bin_file_name -v --alt 7 -R
 else
 	echo "ERROR: Timed out waiting for Intel EDU."
 fi

@@ -29,12 +29,12 @@ DefaultDestDir=12
 ;------------------------------------------------------------------------------
 
 [DeviceList]
-%DESCRIPTION1%=DriverInstall, USB\VID_8087&PID_0A9F&MI_00
-%DESCRIPTION2%=DriverInstall, USB\VID_8087&PID_0A9F&MI_02
+%DESCRIPTION1%=DriverInstall, USB\VID_8087&PID_0AB6&MI_00
+%DESCRIPTION2%=DriverInstall, USB\VID_8087&PID_0AB6&MI_02
 
 [DeviceList.NTamd64]
-%DESCRIPTION1%=DriverInstall, USB\VID_8087&PID_0A9F&MI_00
-%DESCRIPTION2%=DriverInstall, USB\VID_8087&PID_0A9F&MI_02
+%DESCRIPTION1%=DriverInstall, USB\VID_8087&PID_0AB6&MI_00
+%DESCRIPTION2%=DriverInstall, USB\VID_8087&PID_0AB6&MI_02
 
 
 ;------------------------------------------------------------------------------
