@@ -18,11 +18,11 @@ CatalogFile = intc_composite.cat
 
 [Generic.NTx86]
 ; Intel EDU
-%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0AB6 ; ACM+ACM
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0AB6,USB\VID_8087&PID_0A9F ; ACM+ACM
 
 [Generic.NTamd64]
 ; Intel EDU
-%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0AB6 ; ACM+ACM
+%USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0AB6,USB\VID_8087&PID_0A9F ; ACM+ACM
 
 [ControlFlags]
 ExcludeFromSelect=*
