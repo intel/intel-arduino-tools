@@ -11,8 +11,6 @@ echo "Args to shell:" $*
 path_to_exe=$1
 fixed_path=${path_to_exe//\\/\/}
 
-LD_LIBRARY_PATH=$fixed_path/../lib/
-
 #
 tty_port_id=$3
 echo "Serial Port PORT" $com_port_id 
