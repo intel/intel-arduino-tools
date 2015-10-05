@@ -8,7 +8,7 @@ Signature="$Windows NT$"
 Class=Ports
 ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
 Provider=%MFGNAME%
-DriverVer=09/16/2015,5.1.2600.0
+DriverVer=10/05/2015,5.1.2600.0
 CatalogFile = intc_serial.cat
 
 [Manufacturer]
@@ -29,10 +29,10 @@ DefaultDestDir=12
 ;------------------------------------------------------------------------------
 
 [DeviceList]
-%DESCRIPTION%=DriverInstall, USB\VID_8087&PID_0AB6, USB\VID_8087&PID_0A9F
+%DESCRIPTION%=DriverInstall, USB\VID_8087&PID_0AB6
 
 [DeviceList.NTamd64]
-%DESCRIPTION%=DriverInstall, USB\VID_8087&PID_0AB6, USB\VID_8087&PID_0A9F
+%DESCRIPTION%=DriverInstall, USB\VID_8087&PID_0AB6
 
 
 

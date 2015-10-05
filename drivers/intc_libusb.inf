@@ -41,11 +41,10 @@
 DeviceName = "Intel EDU DFU Interface"
 VendorID = "VID_8087"
 ProductID = "PID_0ABA"
-ProductID2 = "PID_0A99"
 DeviceGUID = "{d35924d6-3e16-4a9e-9782-5524a4b79bac}"
 DeviceClassGUID = "{78a1c341-4539-11d3-b88d-00c04fad5171}"
 ; Date MUST be in MM/DD/YYYY format
-Date = "06/24/2015"
+Date = "10/05/2015"
 
 ; =====================================================
 ; ========== END USER CONFIGURABLE SECTION ============
@@ -83,10 +82,10 @@ HKR,,Icon,,-20
 %ProviderName% = libusbDevice_WinUSB,NTx86,NTamd64
 
 [libusbDevice_WinUSB.NTx86]
-%DeviceName% = USB_Install, USB\%VendorID%&%ProductID%, USB\%VendorID%&%ProductID2%
+%DeviceName% = USB_Install, USB\%VendorID%&%ProductID%
 
 [libusbDevice_WinUSB.NTamd64]
-%DeviceName% = USB_Install, USB\%VendorID%&%ProductID%, USB\%VendorID%&%ProductID2%
+%DeviceName% = USB_Install, USB\%VendorID%&%ProductID%
 
 ; ==================== Installation ===================
 
