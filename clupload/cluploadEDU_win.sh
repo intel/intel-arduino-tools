@@ -22,7 +22,7 @@ echo "Serial Port PORT" $com_port_id
 #echo "Using tty Port" $tty_port_id 
 #
 #echo "Sending Command String to move to download if not already in download mode"
-#echo "~sketch downloadEDU" > $tty_port_id
+#echo "~sketch downloadArduino101" > $tty_port_id
 #Give the host time to stop the process and wait for download
 #sleep 1
 
@@ -48,5 +48,5 @@ if [ "x$f" != "x" ] ; then
 	echo $dfu_cmd -D $bin_file_name -v --alt 7 -R
 	$dfu_cmd  -D $bin_file_name -v --alt 7 -R
 else
-	echo "ERROR: Timed out waiting for Intel EDU."
+	echo "ERROR: Timed out waiting for Arduino 101."
 fi
