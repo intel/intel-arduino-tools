@@ -35,5 +35,5 @@ if [ "x$f" != "x" ] ; then
     echo "Using dfu-util to send " $bin_file_name
     DYLD_LIBRARY_PATH=$fixed_path $DFU -D $bin_file_name -v --alt 7 -R
 else
-     echo "ERROR: Timed out waiting for Intel EDU."
+     echo "ERROR: Timed out waiting for Arduino 101."
 fi
