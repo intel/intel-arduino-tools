@@ -1,5 +1,5 @@
 ;*********************************************************************************************
-; Windows USB Composite Setup File for Intel EDU
+; Windows USB Composite Setup File for Arduino 101
 ;
 ; Copyright (c) 2014 Intel Corporation
 ;
@@ -17,11 +17,11 @@ CatalogFile = intc_composite.cat
 %ProviderName% 	=	Generic,NTx86,NTamd64
 
 [Generic.NTx86]
-; Intel EDU
+; Arduino 101
 %USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0AB6 ; ACM+ACM
 
 [Generic.NTamd64]
-; Intel EDU
+; Arduino 101
 %USBCompositeDevice% = Composite.Device,USB\VID_8087&PID_0AB6 ; ACM+ACM
 
 [ControlFlags]
@@ -41,6 +41,6 @@ Needs=Composite.Dev.NT.Services
 
 [Strings]
 ProviderName 		= "Intel Corporation"
-ServiceDisplayName	= "Intel EDU USB Composite Device Driver"
-USBCompositeDevice	= "Intel EDU USB Composite Device"
-SourceDisk 			= "Intel EDU USB Composite Device Install Disk"
+ServiceDisplayName	= "Arduino 101 USB Composite Device Driver"
+USBCompositeDevice	= "Arduino 101 USB Composite Device"
+SourceDisk 		= "Arduino 101 USB Composite Device Install Disk"

@@ -45,8 +45,8 @@ DefaultDestDir=12
 MFGFILENAME="CDC_vista"
 DRIVERFILENAME ="usbser"
 MFGNAME="http://www.intel.com"
-INSTDISK="Intel EDU Driver Installer"
-DESCRIPTION="Intel EDU Serial Monitor"
+INSTDISK="Arduino 101 Driver Installer"
+DESCRIPTION="Arduino 101 Serial Monitor"
 SERVICE="USB RS-232 Emulation Driver"
 
 

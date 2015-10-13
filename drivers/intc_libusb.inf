@@ -38,7 +38,7 @@
 ; ========= START USER CONFIGURABLE SECTION ===========
 ; =====================================================
 
-DeviceName = "Intel EDU DFU Interface"
+DeviceName = "Arduino 101 DFU Interface"
 VendorID = "VID_8087"
 ProductID = "PID_0ABA"
 DeviceGUID = "{d35924d6-3e16-4a9e-9782-5524a4b79bac}"
