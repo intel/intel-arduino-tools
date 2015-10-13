@@ -1,7 +1,7 @@
 ;*********************************************************************************************
 ; Windows USB Composite Setup File for Arduino 101
 ;
-; Copyright (c) 2014 Intel Corporation
+; Copyright (c) 2015 Intel Corporation
 ;
 ; For use only on Windows operating systems.
 ;*********************************************************************************************
@@ -10,7 +10,7 @@ Signature 			= "$WINDOWS NT$"
 Class 				= USB
 ClassGUID 			= {4D36E978-E325-11CE-BFC1-08002BE10318}
 Provider 			= %ProviderName%
-DriverVer			= 10/05/2015,1.1.0.0
+DriverVer			= 10/13/2015,1.1.0.0
 CatalogFile = intc_composite.cat
 
 [Manufacturer]
