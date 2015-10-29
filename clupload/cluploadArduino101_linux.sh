@@ -24,17 +24,17 @@ echo "BIN FILE" $bin_file_name
 DFU=$fixed_path/dfu-util
 echo "wating for Arduino 101 device... "
 COUNTER=0
-f=`$DFU -l -d 8087:0ABA | grep sensor_core | cut -f 1 -d ' '`
+f=`$DFU -l -d ,8087:0ABA | grep sensor_core | cut -f 1 -d ' '`
 while [ "x$f" = "x" ] && [ $COUNTER -lt 10 ]
 do
     let COUNTER=COUNTER+1
     sleep 1
-    f=`$DFU -l -d 8087:0ABA | grep sensor_core | cut -f 1 -d ' '`
+    f=`$DFU -l -d ,8087:0ABA | grep sensor_core | cut -f 1 -d ' '`
 done
 
 if [ "x$f" != "x" ] ; then
 	echo "Using dfu-util to send " $bin_file_name
-	$DFU -d8087:0ABA -D $bin_file_name -v --alt 7 -R
+	$DFU -d,8087:0ABA -D $bin_file_name -v --alt 7 -R
 else
 	echo "ERROR: Timed out waiting for Arduino 101."
 fi
