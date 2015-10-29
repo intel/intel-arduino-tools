@@ -21,7 +21,7 @@ bin_file_name=${host_file_name/elf/bin}
 echo "BIN FILE" $bin_file_name
 
 
-DFU="$fixed_path/dfu-util -d8087:0ABA"
+DFU="$fixed_path/dfu-util -d,8087:0ABA"
 echo "wating for Arduino 101 device... "
 COUNTER=0
 f=`$DFU -l | grep sensor_core | cut -f 1 -d ' '`
