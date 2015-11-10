@@ -10,7 +10,7 @@ echo "Args to shell:" $*
 #path may contain \ need to change all to /
 dfu=${1}\\dfu-util.exe
 dfu=${dfu//\\/\/}
-dfu_cmd="$dfu -d8087:0ABA"
+dfu_cmd="$dfu -d,8087:0ABA"
 sleep=${1}\\sleep.exe
 sleep=${sleep//\\/\/}
 path_to_exe=$1
