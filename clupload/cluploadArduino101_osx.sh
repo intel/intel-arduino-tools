@@ -18,7 +18,7 @@ echo "BIN FILE" $bin_file_name
 
 #DFU=DYNLD_LIBRARY_PATH=$fixed_path $fixed_path/dfu-util
 DYLD_LIBRARY_PATH=$fixed_path
-DFU="$fixed_path/dfu-util -d8087:0ABA"
+DFU="$fixed_path/dfu-util -d,8087:0ABA"
 
 echo "wating for device... "
 COUNTER=0
