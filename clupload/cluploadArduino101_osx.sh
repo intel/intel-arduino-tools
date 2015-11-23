@@ -1,39 +1,60 @@
 #!/bin/sh
-echo "starting download script"
-echo "Args to shell:" $*
-#
-# ARG 1: Path to lsz executable.
-# ARG 2: Elf File to download
-# ARG 3: TTY port to use.
-#
-#path may contain \ need to change all to /
-path_to_exe=$1
-fixed_path=${path_to_exe//\\/\/}
-tty_port_id=$3
 
-#Download the file.
-host_file_name=$2
-bin_file_name=${host_file_name/elf/bin}
-echo "BIN FILE" $bin_file_name
+setup() {
+    # ARG 1: Path to directory which contains dfu-util executable
+    dfu_util_dir=$1
+    # ARG 2: Elf file to upload
+    payload_elf=$2
+    # ARG 3: TTY port to use
+    tty_port_id=$3
 
-#DFU=DYNLD_LIBRARY_PATH=$fixed_path $fixed_path/dfu-util
-DYLD_LIBRARY_PATH=$fixed_path
-DFU="$fixed_path/dfu-util -d,8087:0ABA"
+    # Upload the .bin instead of .elf
+    payload_bin=${payload_elf/elf/bin}
+    echo "Payload:" $payload_bin
 
-echo "wating for device... "
-COUNTER=0
-f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l | grep sensor_core | cut -f 1 -d ' '`
-while [ "x$f" = "x" ] && [ $COUNTER -lt 10 ]
-do
-    let COUNTER=COUNTER+1
-    sleep 1
-	echo $DFU
-    f=`DYLD_LIBRARY_PATH=$fixed_path $DFU -l | grep sensor_core | cut -f 1 -d ' '`
-done
+    export DYLD_LIBRARY_PATH=$dfu_util_dir:$DYLD_LIBRARY_PATH
+    DFU="$dfu_util_dir/dfu-util -d,8087:0ABA"
+}
 
-if [ "x$f" != "x" ] ; then
-    echo "Using dfu-util to send " $bin_file_name
-    DYLD_LIBRARY_PATH=$fixed_path $DFU -D $bin_file_name -v --alt 7 -R
-else
-     echo "ERROR: Timed out waiting for Arduino 101."
-fi
+trap_to_dfu() {
+    dfu_lock=$TMPDIR/dfu_lock
+    
+    # If dfu_lock already exists, clean up before starting the loop
+    [ -f $dfu_lock ] && rm -f $dfu_lock
+
+    # Loop to read from 101 so that it stays on DFU mode afterwards.
+    counter=0
+    until $DFU -a 4 -U $dfu_lock > /dev/null 2>&1
+    do
+        sleep 0.1
+    
+        # Wait in loop only up to 50 times
+        let counter=counter+1
+        if [ "$counter" -gt "50" ]; then
+            echo "ERROR: Timed out waiting for Arduino 101."
+            exit 1
+        fi
+    done
+
+    # Clean up
+    [ -f $dfu_lock ] && rm -f $dfu_lock
+}
+
+upload() {
+    $DFU -a 7 -R -D $payload_bin
+}
+
+main() {
+    echo "Starting upload script"
+    setup "$@"
+
+    echo "Waiting for device... "
+    trap_to_dfu
+
+    echo "Using dfu-util to send " $payload_bin
+    upload
+
+    exit 0
+}
+
+main "$@"
