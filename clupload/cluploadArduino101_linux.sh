@@ -35,6 +35,7 @@ done
 if [ "x$f" != "x" ] ; then
 	echo "Using dfu-util to send " $bin_file_name
 	$DFU -D $bin_file_name -v --alt 7 -R
+	echo "Sketch will execute in about 5 seconds."
 else
 	echo "ERROR: Timed out waiting for Arduino 101."
 fi
