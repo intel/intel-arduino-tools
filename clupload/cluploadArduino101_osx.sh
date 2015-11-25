@@ -42,6 +42,7 @@ trap_to_dfu() {
 
 upload() {
     $DFU -a 7 -R -D $payload_bin
+    echo "Sketch will execute in about 5 seconds."
 }
 
 main() {
