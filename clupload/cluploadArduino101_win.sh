@@ -33,7 +33,7 @@ main() {
 
 	cyg_path="${1//\\/\/}"
 	dfu="$cyg_path/dfu-util.exe"
-	dfu_cmd="$dfu -d,8087:0ABA"
+	dfu_flags="-d,8087:0ABA"
 	sleep="$cyg_path/sleep.exe"
 	tmp_dfu_output="$cyg_path/../../.tmp_dfu_output"
 
@@ -50,20 +50,20 @@ main() {
 	dbg_print "Waiting for device..."
 
 	COUNTER=0
-	"$dfu_cmd" -l  >"$tmp_dfu_output"
+	"$dfu" $dfu_flags -l  >"$tmp_dfu_output"
 	f=$(find_string "sensor_core" "$tmp_dfu_output")
 	while [ "x$f" == "xnot_found" ] && [ $COUNTER -lt 10 ]
 	do
 		let COUNTER=COUNTER+1
 		"$sleep" 1
-		"$dfu_cmd" -l >"$tmp_dfu_output"
+		"$dfu" $dfu_flags -l >"$tmp_dfu_output"
 		f=$(find_string "sensor_core" "$tmp_dfu_output")
 	done
 
 	if [ "x$verbosity" == "xverbose" ] ; then
-		dfu_download="\"$dfu_cmd\" -D \"$bin_file_name\" -v --alt 7 -R"
+		dfu_download="\"$dfu\" $dfu_flags -D \"$bin_file_name\" -v --alt 7 -R"
 	else
-		dfu_download="\"$dfu_cmd\" -D \"$bin_file_name\" --alt 7 -R >/dev/null 2>&1"
+		dfu_download="\"$dfu\" $dfu_flags -D \"$bin_file_name\" --alt 7 -R >/dev/null 2>&1"
 	fi
 
 	if [ "x$f" == "xfound" ] ; then
