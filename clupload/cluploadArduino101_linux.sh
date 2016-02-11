@@ -8,7 +8,7 @@ dbg_print() {
 
 error_out() {
 	echo "$@"
-	exit 1
+	exit -1
 }
 
 main() {
@@ -53,7 +53,7 @@ main() {
 		eval $dfu_download || error_out "ERROR: DFU transfer failed"
 		echo "SUCCESS: Sketch will execute in about 5 seconds."
 	else
-		error_out "ERROR: Timed out waiting for Arduino 101."
+		error_out "ERROR: Device is not responding."
 	fi
 }
 
