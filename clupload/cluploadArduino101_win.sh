@@ -18,7 +18,7 @@ find_string() {
 
 error_out() {
 	echo "$@"
-	exit 1
+	exit -1
 }
 
 main() {
@@ -72,7 +72,7 @@ main() {
 		eval $dfu_download || error_out "ERROR: DFU transfer failed"
 		echo "SUCCESS: Sketch will execute in about 5 seconds."
 	else
-		echo "ERROR: Timed out waiting for Arduino 101 on" "$com_port"
+		echo "ERROR: Device is not responding."
 	fi
 }
 
