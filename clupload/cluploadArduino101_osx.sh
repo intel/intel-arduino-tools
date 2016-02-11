@@ -8,7 +8,7 @@ dbg_print() {
 
 error_out() {
     echo "$@"
-    exit 1
+    exit -1
 }
 
 setup() {
@@ -50,8 +50,8 @@ trap_to_dfu() {
         # Wait in loop only up to 50 times
         let counter=counter+1
         if [ "$counter" -gt "50" ]; then
-            echo "ERROR: Timed out waiting for Arduino 101."
-            exit 1
+            echo "ERROR: Device is not responding."
+            exit -1
         fi
     done
 
