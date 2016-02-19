@@ -83,7 +83,7 @@ func main() {
 	}
 
 	if board_found == false {
-		fmt.Println("ERROR: Timed out waiting for Arduino 101 on " + com_port)
+		fmt.Println("ERROR: Device is not responding.")
 		os.Exit(1)
 	}
 
