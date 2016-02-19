@@ -8,7 +8,8 @@ multiplatform launcher for Arduino101 dfu-util flashing utility
 * execute
 ```bash
 export GOPATH=$PWD
-go get
+export GOBIN=.
+go get -d
 go build
 ```
 to produce a binary of `arduino101load` for your architecture.
