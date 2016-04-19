@@ -1,0 +1,8 @@
+This directory contains binaries from various open-source projects:
+ * dfu-util binaries:
+   https://github.com/arduino/dfu-utils-cross
+ * Cygwin and Bash binaries:
+   https://cygwin.com/install.html
+ * LSZ binaries:
+   https://ohse.de/uwe/software/lrzsz.html
+
