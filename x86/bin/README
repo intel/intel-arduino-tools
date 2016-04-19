@@ -1,0 +1,6 @@
+This directory contains binaries from various open-source projects:
+ * dfu-util binaries:
+   https://github.com/arduino/dfu-utils-cross
+ * LSZ binaries:
+   https://ohse.de/uwe/software/lrzsz.html
+
