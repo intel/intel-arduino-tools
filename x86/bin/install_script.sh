@@ -1,5 +1,6 @@
 #!/bin/bash
 
+FIND_OPTS="+111 /111"
 INST_ARCH=$(uname -m | sed -e "s/i[3-6]86/ix86/" -e "s/x86[-_]64/x86_64/")
 SDK_ARCH=$(echo i586 | sed -e "s/i[3-6]86/ix86/" -e "s/x86[-_]64/x86_64/")
 
@@ -107,8 +108,12 @@ if [ "$dl_path" = "" ] ; then
 	echo "SDK could not be set up. Relocate script unable to find ld-linux.so. Abort!"
 	exit 1
 fi
-#executable_files="'"$($SUDO_EXEC find "$native_sysroot" -type f -perm +111)"'"
-executable_files=$($SUDO_EXEC find "$native_sysroot" -type f -perm +111 -exec printf "\"%s\" " {} \; )
+
+for opt in $FIND_OPTS
+do
+    executable_files=$($SUDO_EXEC find "$native_sysroot" -type f -perm "$opt" -exec printf "\"%s\" " {} \;)
+    [ $? -eq 0 ] && break
+done
 
 tdir=`mktemp -d`
 if [ x$tdir = x ] ; then
