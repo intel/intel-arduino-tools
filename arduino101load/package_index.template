@@ -1,0 +1,41 @@
+        {
+          "name": "arduino101load",
+          "version": "%%VERSION%%",
+          "systems": [
+            {
+              "host": "i386-apple-darwin11",
+              "url": "http://downloads.arduino.cc/tools/%%FILENAME_DARWIN_AMD64%%",
+              "archiveFileName": "%%FILENAME_DARWIN_AMD64%%",
+              "size": "%%SIZE_DARWIN_AMD64%%",
+              "checksum": "SHA-256:%%SHA_DARWIN_AMD64%%"
+            },
+            {
+              "host": "arm-linux-gnueabihf",
+              "url": "http://downloads.arduino.cc/tools/%%FILENAME_LINUX_ARM%%",
+              "archiveFileName": "%%FILENAME_LINUX_ARM%%",
+              "size": "%%SIZE_LINUX_ARM%%",
+              "checksum": "SHA-256:%%SHA_LINUX_ARM%%"
+            },
+            {
+              "host": "x86_64-linux-gnu",
+              "url": "http://downloads.arduino.cc/tools/%%FILENAME_LINUX_AMD64%%",
+              "archiveFileName": "%%FILENAME_LINUX_AMD64%%",
+              "size": "%%SIZE_LINUX_AMD64%%",
+              "checksum": "SHA-256:%%SHA_LINUX_AMD64%%"
+            },
+            {
+              "host": "i686-linux-gnu",
+              "url": "http://downloads.arduino.cc/tools/%%FILENAME_LINUX_386%%",
+              "archiveFileName": "%%FILENAME_LINUX_386%%",
+              "size": "%%SIZE_LINUX_386%%",
+              "checksum": "SHA-256:%%SHA_LINUX_386%%"
+            },
+            {
+              "host": "i686-mingw32",
+              "url": "http://downloads.arduino.cc/tools/%%FILENAME_WINDOWS_386%%",
+              "archiveFileName": "%%FILENAME_WINDOWS_386%%",
+              "size": "%%SIZE_WINDOWS_386%%",
+              "checksum": "SHA-256:%%SHA_WINDOWS_386%%"
+            }
+          ]
+        }
